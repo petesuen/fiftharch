@@ -1,0 +1,35 @@
+{% extends "blog/base.html" %}
+{% load staticfiles %}
+
+			{% block content %} 			
+	 			<!-- Images -->
+				<div id="imgs_container">
+	    			{% for img in imgs %}	    
+					<img id="img_{{ forloop.counter0 }}" img_id="{{ img.id }}" src="{% static img.filename %}" 
+						{% if forloop.counter0 == 0 %}
+							style="display: block; float: left" 
+						{% else %} 
+							style="display: none; float: left"
+						{% endif %}/>
+					{% endfor %}
+					<div class="clear"></div><!-- to prevent jumping on hide/show -->
+					
+					<div style="margin-top: 5px;">
+						<a href="#" onclick="prev_img()"><span class="img_nav">PREV&nbsp;|&nbsp;</span></a>
+						<span id="img_index">1</span>/{{ num_of_imgs }}		
+						<a href="#" onclick="next_img()"><span class="img_nav">&nbsp;|&nbsp;NEXT</span></a>									
+						<span id="img_caption" style="float: right">{{ first_img_caption }}</span>
+					</div>
+				</div>
+
+				<div id="project" class="content">
+		    		<b><span id="project_name">{{ project.name }}</span></b><br/>
+					<span id="project_blurb">{{ project.blurb }}</span><br/>
+					<br/>
+					<div id="project_desc" style="text-align: justify;">
+						{% autoescape off %}
+						{{ project.desc }}		
+						{% endautoescape %}		
+					</div>
+				</div>
+		    {% endblock content %}

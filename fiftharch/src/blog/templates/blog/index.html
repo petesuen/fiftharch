@@ -1,0 +1,19 @@
+{% extends "blog/base.html" %}
+{% load staticfiles %}
+
+			{% block content %} 			
+	 			{% for img in imgs %}
+	 				<div class="index_img_container">
+	 				{% if img.project != None %}
+						<a href="{% url 'project' img.project.id %}"> 
+					{% else %} 
+						<a href="{% url 'class' img.my_class.id %}"> 
+					{% endif %}  
+						<img id="img_{{ forloop.counter0 }}" img_id="{{ img.id }}" src="{% static img.filename %}"/>
+						</a>
+						
+						<div class="index_img_overlay"><b>{{ img.caption }}</b></div>
+					</div>
+				{% endfor %}
+				<br class="clear" />
+		    {% endblock content %}
