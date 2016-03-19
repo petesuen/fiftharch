@@ -11,7 +11,7 @@ def project(request, project_id):
     project = Project.objects.filter(id=project_id)[0]
     
     # Get the project images.
-    imgs =  Image.objects.filter(project=project, is_index_img=False);
+    imgs =  Image.objects.filter(project=project, is_index_img=False).order_by('date');
     first_img_caption = '';
     if imgs.count()>=1:
         first_img_caption = imgs[0].caption;
@@ -34,7 +34,7 @@ def _class(request, class_id):
     _class = Class.objects.filter(id=class_id)[0]
     
     # Get the class images.
-    imgs =  Image.objects.filter(my_class=_class, is_index_img=False);
+    imgs =  Image.objects.filter(my_class=_class, is_index_img=False).order_by('date');
     first_img_caption = '';
     if len(imgs)>1:
         first_img_caption = imgs[0].caption;
